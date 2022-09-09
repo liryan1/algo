@@ -18,7 +18,24 @@ struct Rect {
 
 bool overlap(Rect &R1, Rect &R2)
 {
-    // Return True if two rectangles overlap.
+    Rect minXRect, minYRect, maxXRect, maxYRect;
+    if (R1.BL.x < R2.BL.x) {
+        minXRect = R1;
+        maxXRect = R2;
+    } else {
+        minXRect = R2;
+        maxXRect = R1;
+    }
+    if (R1.BL.y < R2.BL.y) {
+        minYRect = R1;
+        maxYRect = R2;
+    } else {
+        minYRect = R2;
+        maxYRect = R1;
+    }
+
+    return minXRect.TR.x > maxXRect.BL.x && minYRect.TR.y > maxYRect.BL.y;
+
 }
 
 int main() {
@@ -36,4 +53,14 @@ int main() {
     R2 = {{0, 1}, {100, 2}};
     assert(overlap(R1, R2) == false);
     cout << "----- Test3 passed." << endl;
+
+    R1 = {{1, 1}, {3, 3}};
+    R2 = {{0, 2}, {2, 3}};
+    assert(overlap(R1, R2) == true);
+    cout << "----- Test4 passed." << endl;
+
+    R1 = {{1, 1}, {3, 3}};
+    R2 = {{2, 2}, {4, 2}};
+    assert(overlap(R1, R2) == true);
+    cout << "----- Test5 passed." << endl;
 }

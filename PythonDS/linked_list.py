@@ -1,16 +1,17 @@
-'''
+"""
 Some Linked list functions
-'''
+"""
 
-# Definition for singly-linked list.
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 
-def reverse(head: ListNode) -> ListNode:
-    if not head: return
+def reverse(head: ListNode) -> ListNode | None:
+    if not head:
+        return None
     prev, curr = None, head
     while curr and curr.next:
         temp = curr.next
@@ -20,11 +21,13 @@ def reverse(head: ListNode) -> ListNode:
     return prev
 
 
-def removeElements(head: ListNode, val: int) -> ListNode:
-    ''' Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
-    '''
-    if not head: return
-    while head and head.val == val: # deal with first element
+def removeElements(head: ListNode, val: int) -> ListNode | None:
+    """Given the head of a linked list and an integer val, remove all the
+    nodes of the linked list that has Node.val == val, and return the new head.
+    """
+    if not head:
+        return None
+    while head and head.val == val:  # deal with first element
         head = head.next
     curr = head
     while curr and curr.next:
@@ -36,11 +39,8 @@ def removeElements(head: ListNode, val: int) -> ListNode:
     return head
 
 
-
-
 def mergeTwoLists(list1: ListNode, list2: ListNode) -> ListNode:
-    ''' Merge 2 sorted linked lists and return head
-    '''
+    """Merge 2 sorted linked lists and return head"""
     if not list1 or not list2:
         return list1 or list2
 
@@ -50,7 +50,7 @@ def mergeTwoLists(list1: ListNode, list2: ListNode) -> ListNode:
     else:
         head = list2
         list2 = list2.val
-    
+
     curr = head
     # step through each node and update
     while list1 and list2:
@@ -61,7 +61,7 @@ def mergeTwoLists(list1: ListNode, list2: ListNode) -> ListNode:
             curr.next = list2
             list2 = list2.next
         curr = curr.next
-    
+
     # if there is still a list that is left
     if list1 or list2:
         curr.next = list1 if list2 else list2

@@ -4,10 +4,10 @@ class Node:
         self.left = self.right = self.parent = None
 
 
-def traverse(root: Node):
-    ''' Edit: make first part of while loop functional
+def traverse(root: Node) -> None:
+    """Edit: make first part of while loop functional
     The added reference reduces the number of changes
-    '''
+    """
     back = None
     curr = root
     # stop if back to root and coming from right

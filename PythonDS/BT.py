@@ -1,5 +1,5 @@
-from random import randrange
-from collections import deque 
+from collections import deque
+
 
 class Node:
     def __init__(self, data: int = 0) -> None:

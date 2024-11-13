@@ -48,7 +48,8 @@ class DoublyLinkedList:
 
     def remove(self, node: 'DLNode') -> None:
         ''' Delete "node" from the list. O(1) '''
-        if not node: return
+        if not node:
+            return
         if node == self.back:
             self.back = self.back.prev
             self.back.next = None
@@ -99,7 +100,6 @@ def debug():
     print("L:", L)
     print("length:", L.length)
     print("Cycle?", has_cycle(L.front) or has_cycle(L.back))
-
 
 
 if __name__ == "__main__":

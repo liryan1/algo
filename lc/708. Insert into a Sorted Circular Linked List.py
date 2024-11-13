@@ -18,18 +18,27 @@ class Solution:
             node.next = node
             return node
 
-        # if we are on the larger part of the list, go until we get smaller
-        curr = head
-        while insertVal > curr.val:
-            curr = curr.next
+        prev, curr = head, head.next
+        while True:
+            # most straightforward case, insert between prev and curr
+            if prev.val <= insertVal <= curr.val:
+                break
 
-        # we're on the smaller part, find the insertion point
-        while curr.val <= insertVal and curr.next.val >= insertVal:
-            curr = curr.next
+            # At the restarting point of the circular list, then either
+            # the value is greater than both prev and curr OR
+            # less than both prev and curr
+            if prev.val > curr.val:
+                if prev.val >= insertVal <= curr.val:
+                    break
+                if prev.val <= insertVal >= curr.val:
+                    break
+
+            prev, curr = curr, curr.next
+            # this condition so that the while loop doesn't end right away
+            if prev == head or curr == head:
+                break
 
         # insert
-        prev = curr
-        prev.next = Node(insertVal)
-        prev.next.next = curr.next
+        prev.next = Node(insertVal, curr)
 
         return head

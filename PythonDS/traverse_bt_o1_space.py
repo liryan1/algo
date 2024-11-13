@@ -9,10 +9,10 @@ def traverse(root: Node) -> None:
     The added reference reduces the number of changes
     """
     back = None
-    curr = root
+    curr: Node | None = root
     # stop if back to root and coming from right
     while curr:
-        next = curr
+        next: Node | None = curr
         if back == curr.parent:  # First time through
             print(curr.val)
             if curr.left:
